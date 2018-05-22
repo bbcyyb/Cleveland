@@ -1,19 +1,5 @@
 #!/bin/bash
 
-# Copyright (c) 2016-2017 Dell Inc. or its subsidiaries. All Rights Reserved.
-
-#
-# Run this without options to create a virtual
-# environment for a specific name, a default name, or git-branch
-# based name.
-#
-# By default (no argument), the base environment name will be 'test'
-#  If an argument is passed, the base name will be that value _except_
-#  If the argument is 'git', the base name will be the git-branch
-#
-# mkenv.sh <env_name>
-#
-
 PROG=${0}
 
 # We need virtualenv from somewhere
