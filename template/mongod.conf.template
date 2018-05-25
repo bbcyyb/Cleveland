@@ -1,0 +1,29 @@
+#shard node, from 21 to 26
+systemLog:
+  destination: file
+  path: /mongodb/280XX/log/mongodb.log   
+  logAppend: true
+storage:
+  journal:
+    enabled: true
+  dbPath: /mongodb/280XX/data
+  directoryPerDB: true
+  #engine: wiredTiger
+  wiredTiger:
+    engineConfig:
+      cacheSizeGB: 1
+      directoryForIndexes: true
+    collectionConfig:
+      blockCompressor: zlib
+    indexConfig:
+      prefixCompression: true
+net:
+  bindIp: 10.0.0.152
+  port: 280XX
+replication:
+  oplogSizeMB: 2048
+  replSetName: sh1
+sharding:
+  clusterRole: shardsvr
+processManagement: 
+  fork: true

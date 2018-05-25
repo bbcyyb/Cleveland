@@ -23,10 +23,19 @@ function init {
     shard_suffix=21,22,23,24,25,26
     replicaSet_num=2
     total_suffix=${mongos_suffix},${config_suffix},${shard_suffix}
-    echo ${total_suffix}
+
+    rm -rf /mongodb
     for i in `echo ${total_suffix} | tr "," "\n"`; do
-        echo "$i ~~"
+        mkdir -p /mongodb/${prefix}$i/conf
+        mkdir -p /mongodb/${prefix}$i/data
+        mkdir -p /mongodb/${prefix}$i/log
     done 
+
+    # copy shard mongod config temp to each node
+    for i in `echo ${shard_suffix} | tr "," "\n"`; do
+        cp template/mongod.conf.template /mongodb/${prefix}$i/conf/mongod.conf
+        sed -i "s#${prefix}XX#${prefix}$i#g" /mongodb/${prefix}$i/conf/mongod.conf
+    done
 }
 
 init
